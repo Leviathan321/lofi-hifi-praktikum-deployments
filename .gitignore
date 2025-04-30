@@ -20,3 +20,5 @@ carla/*
 !Opensbt/
 Opensbt/*
 !Opensbt/Dockerfile
+
+!figures/
