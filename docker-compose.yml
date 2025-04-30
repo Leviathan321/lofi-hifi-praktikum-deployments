@@ -10,7 +10,7 @@ services:
         roslaunch autoware_mini start_sim.launch tfl_detector:=mqtt  map_name:=Town01
     build:
       context: ${PWD}/autoware_mini
-      dockerfile: Dockerfile
+      dockerfile: AUTOWARE_MINI/Dockerfile
       args: 
           - PROCESS_COUNT=${PROCESS_COUNT}
           - DISPLAY=${DISPLAY}
@@ -29,7 +29,7 @@ services:
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
       - ~/.Xauthority:/root/.Xauthority
-      - /home/prac/Desktop/Practicum_Docker/autoware_mini_docker/autoware_mini/SCENARIO_RUNNER:/opt/SCENARIO_RUNNER
+      - ./autoware_mini/SCENARIO_RUNNER:/opt/SCENARIO_RUNNER
     image: "autoware_mini:latest"
     container_name: autoware_mini_lofi
     network_mode: "host"
@@ -50,7 +50,7 @@ services:
         roslaunch autoware_mini start_carla.launch detector:=lidar_cluster   use_scenario_runner:=true map_name:=Town01
     build:
       context: ${PWD}/autoware_mini
-      dockerfile: Dockerfile
+      dockerfile: AUTOWARE_MINI/Dockerfile
       args: 
           - PROCESS_COUNT=${PROCESS_COUNT}
           - DISPLAY=${DISPLAY}
@@ -67,7 +67,7 @@ services:
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
       - ~/.Xauthority:/root/.Xauthority
-      - /home/prac/Desktop/Practicum_Docker/autoware_mini_docker/autoware_mini/SCENARIO_RUNNER:/opt/SCENARIO_RUNNER
+      - ./autoware_mini/SCENARIO_RUNNER:/opt/SCENARIO_RUNNER
     image: "autoware_mini:latest"
     container_name: autoware_mini_hifi 
     network_mode: "host"    
@@ -88,7 +88,8 @@ services:
       - ~/.Xauthority:/root/.Xauthority
       - ${PWD}/Opensbt/CARLA_ROOT:/home/carla
       - ${PWD}/Opensbt/SCENARIO_RUNNER_ROOT:/home/scenario_runner
-      - ${PWD}/Opensbt/OPENSBT_ROOT:/home/opensbt
+      - ${PWD}/Opensbt/OPENSBT_ROOT:/home/opensbt 
+      - ${PWD}/Opensbt/OPENSBT_ROOT/results:/home/opensbt/results # mount the results folder to make visible locally
     image: opensbt:latest
     container_name: opensbt
     network_mode: "host" 
