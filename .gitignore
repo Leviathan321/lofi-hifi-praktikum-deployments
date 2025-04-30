@@ -21,4 +21,4 @@ carla/*
 Opensbt/*
 !Opensbt/Dockerfile
 
-!figures/
+!figures/project_structure.png
