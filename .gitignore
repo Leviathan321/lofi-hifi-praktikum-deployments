@@ -1,0 +1,22 @@
+# Ignore everything
+*
+
+# Allow these root-level files
+!.gitignore
+!README.md
+!docker-compose.yml
+
+# autoware_mini/Dockerfile only
+!autoware_mini/
+autoware_mini/*
+!autoware_mini/Dockerfile
+
+# carla/Dockerfile only
+!carla/
+carla/*
+!carla/Dockerfile
+
+# Opensbt/Dockerfile only
+!Opensbt/
+Opensbt/*
+!Opensbt/Dockerfile
