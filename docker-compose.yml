@@ -30,6 +30,7 @@ services:
       - /tmp/.X11-unix:/tmp/.X11-unix
       - ~/.Xauthority:/root/.Xauthority
       - ./autoware_mini/SCENARIO_RUNNER:/opt/SCENARIO_RUNNER
+      - ./autoware_mini/AUTOWARE_MINI:/opt/catkin_ws/src/autoware_mini
     image: "autoware_mini:latest"
     container_name: autoware_mini_lofi
     network_mode: "host"
@@ -68,6 +69,7 @@ services:
       - /tmp/.X11-unix:/tmp/.X11-unix
       - ~/.Xauthority:/root/.Xauthority
       - ./autoware_mini/SCENARIO_RUNNER:/opt/SCENARIO_RUNNER
+      - ./autoware_mini/AUTOWARE_MINI:/opt/catkin_ws/src/autoware_mini
     image: "autoware_mini:latest"
     container_name: autoware_mini_hifi 
     network_mode: "host"    
