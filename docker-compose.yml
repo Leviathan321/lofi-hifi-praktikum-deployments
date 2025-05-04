@@ -92,6 +92,7 @@ services:
       - ${PWD}/Opensbt/SCENARIO_RUNNER_ROOT:/home/scenario_runner
       - ${PWD}/Opensbt/OPENSBT_ROOT:/home/opensbt 
       - ${PWD}/Opensbt/OPENSBT_ROOT/results:/home/opensbt/results # mount the results folder to make visible locally
+      - /var/run/docker.sock:/var/run/docker.sock
     image: opensbt:latest
     container_name: opensbt
     network_mode: "host" 
