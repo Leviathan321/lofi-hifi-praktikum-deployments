@@ -96,3 +96,31 @@ services:
     image: opensbt:latest
     container_name: opensbt
     network_mode: "host" 
+  carla_sim:
+    stdin_open: true
+    command: ["bash","./CarlaUE4.sh", "-RenderOffScreen", "--world-port=2000"]
+    privileged: true 
+    build:
+      context: ${PWD}/carla
+      dockerfile: Dockerfile
+      args: 
+          - PROCESS_COUNT=${PROCESS_COUNT}
+          - DISPLAY=$DISPLAY
+          - QT_X11_NO_MITSHM=1
+          - NVIDIA_DRIVER_CAPABILITIES=all
+          - XAUTHORITY=/tmp/.docker.xauth
+    ports:
+      - "2000-2002:2000-2002"
+    volumes:
+        - /tmp/.X11-unix:/tmp/.X11-unix
+        - ~/.Xauthority:/root/.Xauthority
+    image: "prathap/carla_sim:v0.9.13"
+    container_name: carla_sim 
+    network_mode: "host"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
